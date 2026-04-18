@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membangun AI Agent untuk Bisnis Indonesia - Dev.log</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #2563eb; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background-color: #ffffff; color: #0f172a; line-height: 1.7; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text { background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    </style>
+</head>
+<body class="selection:bg-blue-500 selection:text-white">
+
+    <nav class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm py-4">
+        <div class="max-w-4xl mx-auto px-6 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center"><span class="text-white font-bold text-sm">A</span></div>
+                <span class="text-lg font-bold tracking-tight">Aksara<span class="text-blue-600">Coding</span></span>
+            </a>
+            <a href="/" class="text-sm font-medium text-slate-600 hover:text-blue-600">← Back</a>
+        </div>
+    </nav>
+
+    <article class="py-12 px-6">
+        <div class="max-w-3xl mx-auto">
+            <header class="mb-10">
+                <div class="flex items-center gap-3 text-sm text-slate-500 mb-4">
+                    <span class="px-3 py-1 bg-purple-50 text-purple-600 rounded-full font-medium">AI</span>
+                    <span>•</span>
+                    <span>8 Min read</span>
+                    <span>•</span>
+                    <span>April 13, 2026</span>
+                </div>
+                <h1 class="text-3xl md:text-4xl font-bold mb-4">Membangun AI Agent untuk Bisnis Indonesia</h1>
+                <p class="text-lg text-slate-600">Bagaimana Omnira AI memahami konteks bahasa Indonesia dan membantu bisnis lokal.</p>
+            </header>
+
+            <div class="prose prose-lg max-w-none">
+                <p class="text-slate-600 mb-6">Omnira AI adalah AI Agent yang kami kembangkan khusus untuk membantu bisnis Indonesia. Berbeda dengan AI umum, Omnira dirancang untuk memahami konteks budaya dan bahasa Indonesia.</p>
+
+                <h2 class="text-2xl font-bold mt-10 mb-4">Mengapa Bahasa Indonesia Menantang?</h2>
+                <p class="text-slate-600 mb-4">Bahasa Indonesia memiliki keunikan:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-6 space-y-2">
+                    <li>Banyak singkatan dan bahasa gaul</li>
+                    <li>Campuran dengan bahasa daerah</li>
+                    <li>Ejaan yang sering tidak konsisten</li>
+                    <li>Konteks budaya yang perlu dipahami</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold mt-10 mb-4">Solusi yang Kami Bangun</h2>
+                <p class="text-slate-600 mb-4">Kami menggunakan pendekatan hybrid:</p>
+                <ul class="list-disc list-inside text-slate-600 mb-6 space-y-2">
+                    <li>Fine-tuning model dengan data Indonesia</li>
+                    <li>RAG (Retrieval Augmented Generation) untuk konteks bisnis</li>
+                    <li>Custom tokenizer untuk bahasa Indonesia</li>
+                    <li>Agentic workflow untuk tugas kompleks</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold mt-10 mb-4">Hasil</h2>
+                <p class="text-slate-600 mb-6">Omnira AI berhasil memberikan respons yang lebih natural dan akurat untuk bisnis Indonesia dibanding AI umum lainnya.</p>
+            </div>
+
+            <footer class="mt-16 pt-8 border-t border-slate-200">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-full overflow-hidden bg-slate-100">
+                        <img src="../ppsilo.png" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <p class="font-bold">Silo Kusuma</p>
+                        <p class="text-sm text-slate-500">CTO & Co-Founder</p>
+                    </div>
+                </div>
+            </footer>
+
+            <div class="mt-12 p-6 bg-slate-50 rounded-2xl">
+                <h3 class="font-bold text-lg mb-2">Kata Komunitas</h3>
+                <p class="text-slate-600 mb-4">Artikel ini membantu? Bagikan pendapat Anda!</p>
+                <a href="mailto:silokusuma17@gmail.com" class="inline-flex items-center gap-2 text-blue-600 font-semibold">Kirim Feedback <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+            </div>
+        </div>
+    </article>
+
+    <footer class="bg-slate-900 text-white py-8 px-6">
+        <div class="max-w-4xl mx-auto text-center text-sm text-slate-400">
+            <p>© 2026 PT Aksara Coding Nusantara</p>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
