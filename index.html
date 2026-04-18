@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Aksara Coding Nusantara</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --bg: #ffffff;
+            --text: #0f172a;
+            --bg-secondary: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            transition: all 0.3s ease;
+        }
+
+        /* Dark Mode - Full Override */
+        body.dark-mode {
+            background-color: #0f172a !important;
+            color: #f8fafc !important;
+        }
+
+        body.dark-mode .bg-white { background-color: #1e293b !important; }
+        body.dark-mode .bg-slate-50 { background-color: #0f172a !important; }
+        body.dark-mode .bg-slate-100 { background-color: #1e293b !important; }
+        body.dark-mode .bg-blue-50 { background-color: #1e3a5f !important; }
+        body.dark-mode .bg-blue-600 { background-color: #1d4ed8 !important; }
+        body.dark-mode .bg-yellow-400 { background-color: #713f12 !important; color: #fbbf24 !important; }
+        body.dark-mode .bg-slate-900 { background-color: #000 !important; }
+        body.dark-mode .bg-black { background-color: #000 !important; }
+
+        body.dark-mode nav,
+        body.dark-mode header,
+        body.dark-mode section,
+        body.dark-mode footer {
+            background-color: #1e293b !important;
+        }
+
+        body.dark-mode .border-slate-200 { border-color: #334155 !important; }
+        body.dark-mode .border { border-color: #334155 !important; }
+
+        body.dark-mode .text-slate-500,
+        body.dark-mode .text-slate-400,
+        body.dark-mode .text-slate-600 { color: #94a3b8 !important; }
+        body.dark-mode .text-blue-600 { color: #60a5fa !important; }
+        body.dark-mode .text-blue-100 { color: #dbeafe !important; }
+        body.dark-mode .text-black { color: #f8fafc !important; }
+
+        body.dark-mode a,
+        body.dark-mode span,
+        body.dark-mode p,
+        body.dark-mode h1,
+        body.dark-mode h2,
+        body.dark-mode h3,
+        body.dark-mode h4,
+        body.dark-mode li,
+        body.dark-mode div { color: #f8fafc !important; }
+
+        body.dark-mode .shadow-sm,
+        body.dark-mode .shadow-lg,
+        body.dark-mode .shadow-2xl { 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4) !important; 
+        }
+
+        body.dark-mode .prose { color: #f8fafc !important; }
+        body.dark-mode input,
+        body.dark-mode textarea { 
+            background-color: #1e293b !important; 
+            color: #f8fafc !important;
+            border-color: #334155 !important;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, var(--primary) 0%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loading-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb, #3b82f6, #60a5fa, #2563eb);
+            background-size: 200% 100%;
+            animation: loading-slide 1.5s linear infinite;
+            z-index: 9999;
+        }
+
+        @keyframes loading-slide {
+            0% { background-position: 0% 0%; width: 0%; }
+            50% { width: 50%; }
+            100% { background-position: 100% 0%; width: 100%; left: 100%; }
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            background: #1d4ed8;
+        }
+
+        @media (max-width: 640px) {
+            .dark-mode-toggle {
+                bottom: 16px;
+                right: 16px;
+                width: 48px;
+                height: 48px;
+            }
+        }
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+        }
+
+        .banner-carousel {
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            aspect-ratio: 16/9;
+        }
+
+        .banner-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .banner-slide {
+            min-width: 100%;
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+        }
+
+        .banner-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .banner-dot {
+            transition: all 0.3s ease;
+        }
+
+        .banner-dot.active {
+            width: 32px;
+            background: white;
+        }
+    </style>
+</head>
+<body class="selection:bg-blue-500 selection:text-white">
+
+    <div class="loading-bar" id="loadingBar"></div>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center animate-spin">
+            <i data-lucide="loader" class="w-6 h-6 text-white"></i>
+        </div>
+        <p class="mt-4 text-sm font-medium" style="color: var(--text)">Memuat...</p>
+    </div>
+
+    <button class="dark-mode-toggle" id="darkModeToggle" onclick="toggleDarkMode()">
+        <i data-lucide="moon" class="w-5 h-5" id="darkModeIcon"></i>
+    </button>
+
+    <nav class="sticky top-0 z-50 w-full border-b border-slate-200 bg-white/95 backdrop-blur-sm py-4">
+        <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
+            <a href="/" class="flex items-center gap-2">
+                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
+                    <span class="text-white font-bold text-sm">A</span>
+                </div>
+                <span class="text-lg font-bold tracking-tight">Aksara<span class="text-blue-600">Coding</span></span>
+            </a>
+            <div class="hidden md:flex gap-8 text-sm font-medium">
+                <a href="#home" class="text-slate-600 hover:text-blue-600">Home</a>
+                <a href="#products" class="text-slate-600 hover:text-blue-600">Products</a>
+                <a href="#about" class="text-slate-600 hover:text-blue-600">About</a>
+                <a href="#contact" class="text-slate-600 hover:text-blue-600">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <header id="home" class="banner-carousel">
+        <div class="banner-track" id="bannerTrack">
+            <div class="banner-slide">
+                <img src="thumb.png" alt="Selamat Datang">
+            </div>
+            <div class="banner-slide">
+                <img src="paskah.png" alt="Selamat Paskah">
+            </div>
+            <div class="banner-slide">
+                <img src="kontributor.png" alt="Selamat Datang">
+            </div>
+        </div>
+
+        <button class="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all z-10" onclick="prevBanner()">
+            <i data-lucide="chevron-left" class="w-5 h-5 md:w-6 md:h-6"></i>
+        </button>
+        <button class="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 w-10 h-10 md:w-12 md:h-12 bg-black/50 hover:bg-black/70 text-white rounded-full flex items-center justify-center transition-all z-10" onclick="nextBanner()">
+            <i data-lucide="chevron-right" class="w-5 h-5 md:w-6 md:h-6"></i>
+        </button>
+
+        <div class="absolute bottom-3 md:bottom-6 left-1/2 -translate-x-1/2 flex gap-2 z-10" id="bannerDots"></div>
+    </header>
+
+    <section class="py-3 bg-blue-600 text-white text-center">
+        <div class="max-w-6xl mx-auto px-6 flex flex-wrap justify-center gap-6 md:gap-12 text-sm font-medium">
+            <span>PostAja</span>
+            <span>Omnira AI</span>
+        </div>
+    </section>
+
+    <section id="products" class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16">
+                <p class="text-blue-600 font-semibold mb-2 uppercase tracking-wider text-sm">/ What We Build</p>
+                <h2 class="text-4xl md:text-5xl font-bold">Full <span class="gradient-text">Stack</span> Power</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="group p-8 border-2 border-slate-200 hover:border-blue-600 transition-all rounded-2xl">
+                    <div class="text-sm text-blue-600 font-semibold mb-4">01</div>
+                    <h3 class="text-2xl font-bold mb-4">PostAja</h3>
+                    <p class="text-slate-600 mb-4">Platform social media yang meliputi hiburan, edukasi, dan informasi di Indonesia.</p>
+                    <a href="https://postaja.web.id" class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3">Kunjugi <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+                <div class="group p-8 border-2 border-slate-200 hover:border-blue-600 transition-all rounded-2xl">
+                    <div class="text-sm text-blue-600 font-semibold mb-4">02</div>
+                    <h3 class="text-2xl font-bold mb-4">Omnira AI</h3>
+                    <p class="text-slate-600 mb-4">AI Agent yang di rancang untuk membantu pengguna dalam berbagai tugas sehari-hari dan ringan di jalankan tidak membutuhkan spesifikasi tinggi</p>
+                    <a href="#" class="inline-flex items-center gap-2 text-blue-600 font-semibold hover:gap-3">Kunjugi <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-20 px-6 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div>
+                    <p class="text-blue-600 font-semibold mb-2 uppercase text-sm">/ About Us</p>
+                    <h2 class="text-4xl font-bold mb-6">Dari <span class="gradient-text">Sabang</span> ke Merauke</h2>
+                    <p class="text-slate-600 mb-6">PT Aksara Coding Nusantara adalah perusahaan teknologi di Indonesia, yang berkomitmen untuk mendorong transformasi digital di seluruh indonesia</p>
+                    <div class="flex gap-8">
+                        <div><div class="text-3xl font-bold text-blue-600">4+</div><div class="text-sm text-slate-500">Products</div></div>
+                        <div><div class="text-3xl font-bold text-blue-600">2M+</div><div class="text-sm text-slate-500">Users</div></div>
+                        <div><div class="text-3xl font-bold text-blue-600">50+</div><div class="text-sm text-slate-500">Team</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12"><p class="text-blue-600 font-semibold mb-2 uppercase text-sm">/ Tech Stack</p><h2 class="text-3xl font-bold">Teknologi Kami</h2></div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="text-center p-4 bg-slate-50 rounded-xl">
+                    <i data-lucide="file-code" class="w-8 h-8 mx-auto mb-2 text-blue-600"></i>
+                    <div class="font-bold">Next.js</div>
+                    <p class="text-xs text-slate-500">Frontend</p>
+                </div>
+                <div class="text-center p-4 bg-slate-50 rounded-xl">
+                    <i data-lucide="atom" class="w-8 h-8 mx-auto mb-2 text-blue-500"></i>
+                    <div class="font-bold">React</div>
+                    <p class="text-xs text-slate-500">UI</p>
+                </div>
+                <div class="text-center p-4 bg-slate-50 rounded-xl">
+                    <i data-lucide="code" class="w-8 h-8 mx-auto mb-2 text-blue-700"></i>
+                    <div class="font-bold">TypeScript</div>
+                    <p class="text-xs text-slate-500">Type Safety</p>
+                </div>
+                <div class="text-center p-4 bg-slate-50 rounded-xl">
+                    <i data-lucide="database" class="w-8 h-8 mx-auto mb-2 text-slate-600"></i>
+                    <div class="font-bold">PostgreSQL</div>
+                    <p class="text-xs text-slate-500">Database</p>
+                </div>
+                <div class="text-center p-4 bg-slate-50 rounded-xl">
+                    <i data-lucide="server" class="w-8 h-8 mx-auto mb-2 text-green-600"></i>
+                    <div class="font-bold">Supabase</div>
+                    <p class="text-xs text-slate-500">Backend</p>
+                </div>
+                <div class="text-center p-4 bg-slate-50 rounded-xl">
+                    <i data-lucide="palette" class="w-8 h-8 mx-auto mb-2 text-cyan-500"></i>
+                    <div class="font-bold">Tailwind</div>
+                    <p class="text-xs text-slate-500">Styling</p>
+                </div>
+                <div class="text-center p-4 bg-slate-50 rounded-xl">
+                    <i data-lucide="zap" class="w-8 h-8 mx-auto mb-2 text-red-500"></i>
+                    <div class="font-bold">Redis</div>
+                    <p class="text-xs text-slate-500">Cache</p>
+                </div>
+                <div class="text-center p-4 bg-slate-50 rounded-xl">
+                    <i data-lucide="box" class="w-8 h-8 mx-auto mb-2 text-blue-400"></i>
+                    <div class="font-bold">Docker</div>
+                    <p class="text-xs text-slate-500">Container</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-white">
+        <div class="max-w-6xl mx-auto text-center mb-12">
+            <p class="text-blue-600 font-semibold mb-2 uppercase text-sm">/ Our Team</p>
+            <h2 class="text-3xl font-bold">Tim Kami</h2>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            <div class="text-center">
+                <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden bg-slate-100"><img src="pprizz.png" class="w-full h-full object-cover"></div>
+                <h4 class="font-bold">Rizz XD</h4><p class="text-blue-600">CEO & Co-Founder</p>
+            </div>
+            <div class="text-center">
+                <div class="w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden bg-slate-100"><img src="ppsilo.png" class="w-full h-full object-cover"></div>
+                <h4 class="font-bold">Silo Kusuma</h4><p class="text-blue-600">CTO & Co-Founder</p>
+            </div>
+            <div class="text-center">
+                <div class="w-28 h-28 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center"><i data-lucide="user" class="w-10 h-10 text-slate-300"></i></div>
+                <h4 class="font-bold">Raffa Widyanto</h4><p class="text-blue-600">Head of Marketing</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-6 bg-slate-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <p class="text-blue-600 font-semibold mb-2 uppercase text-sm">/ Dev.log</p>
+                <h2 class="text-3xl font-bold">Latest Articles</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <a href="blog/kenapa-sih-harus-bikin-web-jadi-cepat.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-600 transition-all">
+                    <div class="text-xs text-blue-600 font-semibold mb-2">SEO Optimalisasi · 1 Min</div>
+                    <h4 class="font-bold text-lg mb-3">Kenapa sih harus bikin web jadi cepat?</h4>
+                    <p class="text-sm text-slate-500 mb-4">Website lambat bikin SEO mu jadi jelek dan kehilangan banyak pengguna...</p>
+                    <span class="text-blue-600 font-medium text-sm">Baca Selengkapnya →</span>
+                </a>
+                <a href="blog/membangun-ai-agent-untuk-bisnis-indonesia.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-600 transition-all">
+                    <div class="text-xs text-blue-600 font-semibold mb-2">AI · 8 Min</div>
+                    <h4 class="font-bold text-lg mb-3">Membangun AI Agent untuk Bisnis Indonesia</h4>
+                    <p class="text-sm text-slate-500 mb-4">Bagaimana Omnira AI memahami konteks bahasa Indonesia...</p>
+                    <span class="text-blue-600 font-medium text-sm">Baca Selengkapnya →</span>
+                </a>
+                <a href="blog/optimasi-performa-web-ke-100-core-web-vitals.html" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-blue-600 transition-all">
+                    <div class="text-xs text-blue-600 font-semibold mb-2">Performance · 6 Min</div>
+                    <h4 class="font-bold text-lg mb-3">Optimasi Performa Web ke 100 Core Web Vitals</h4>
+                    <p class="text-sm text-slate-500 mb-4">Langkah-langkah teknis untuk mencapai perfect score...</p>
+                    <span class="text-blue-600 font-medium text-sm">Baca Selengkapnya →</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-6 bg-blue-600 text-white text-center">
+        <p class="font-semibold mb-2 uppercase text-sm opacity-80">/ Reach Out</p>
+        <h2 class="text-4xl font-bold mb-6">Start Now</h2>
+        <p class="text-blue-100 max-w-xl mx-auto mb-8">Hubungi kami untuk bergabung.</p>
+        <div class="flex flex-wrap justify-center gap-4">
+            <a href="mailto:silokusuma17@gmail.com" class="bg-white text-blue-600 font-semibold px-8 py-4 rounded-xl hover:bg-blue-50">Kirim Email</a>
+            <a href="https://wa.me/6281220136633" class="bg-blue-700 font-semibold px-8 py-4 rounded-xl hover:bg-blue-800">Hubungi Kami</a>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-white py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="pt-8 border-t border-slate-800 text-center text-sm text-slate-400">© 2026 PT Aksara Coding Nusantara</div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        let currentBanner = 0;
+        const track = document.getElementById('bannerTrack');
+        const total = track.children.length;
+
+        function updateBanner() {
+            track.style.transform = `translateX(-${currentBanner * 100}%)`;
+            updateDots();
+        }
+
+        function nextBanner() {
+            currentBanner = (currentBanner + 1) % total;
+            updateBanner();
+        }
+
+        function prevBanner() {
+            currentBanner = (currentBanner - 1 + total) % total;
+            updateBanner();
+        }
+
+        function goToBanner(i) {
+            currentBanner = i;
+            updateBanner();
+        }
+
+        function updateDots() {
+            const dots = document.getElementById('bannerDots');
+            dots.innerHTML = '';
+            for (let i = 0; i < total; i++) {
+                const btn = document.createElement('button');
+                btn.className = `banner-dot w-3 h-3 rounded-full bg-white/50 hover:bg-white ${i === currentBanner ? 'active' : ''}`;
+                btn.onclick = () => goToBanner(i);
+                dots.appendChild(btn);
+            }
+        }
+
+        setInterval(nextBanner, 8000);
+        updateDots();
+
+        // Loading page
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+                document.getElementById('loadingBar').style.display = 'none';
+            }, 1500);
+        });
+
+        // Dark mode toggle
+        let isDark = false;
+        function toggleDarkMode() {
+            isDark = !isDark;
+            document.body.classList.toggle('dark-mode', isDark);
+            const btn = document.getElementById('darkModeToggle');
+            btn.innerHTML = '';
+            const icon = document.createElement('i');
+            icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+            icon.classList.add('w-6', 'h-6');
+            btn.appendChild(icon);
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
